@@ -7,8 +7,20 @@
 //
 
 import UIKit
+/*
+protocol PlayerDelegate {
+    func ModifyPlayerCancel(controller: ViewController, player: UsersList, ip: NSIndexPath) {
+
+    }
+ 
+}
+ */
+
+var superScore = 1
 
 class ViewController: UIViewController {
+    
+    @IBOutlet var playerNameLabel: UILabel!
 
     @IBOutlet weak var randomNumber: UILabel!
     
@@ -28,15 +40,12 @@ class ViewController: UIViewController {
         getScore()
        // let currentValue = Int(slider.value)
 
-       // sliderValue.text = "\(currentValue)"
         //generateRandomNumber()
         slider.value = 50
         
         //scoreLabel.text = String(scoreCounter)
         
         showMessage()
-        
-        
         
     }
     
@@ -81,7 +90,6 @@ class ViewController: UIViewController {
     }
     
     
-    
     func getScore(){
         
         difference = abs(Int(slider.value) - targetValue)
@@ -89,6 +97,9 @@ class ViewController: UIViewController {
        // print(difference)
         points = (100 - difference)
         scoreCounter += points
+        
+        superScore = scoreCounter
+        
         
     }
     
@@ -102,6 +113,8 @@ class ViewController: UIViewController {
         slider.value = 50
         
         scoreLabel.text = String(scoreCounter)
+        
+       // performSegueWithIdentifier("startOver", sender: superScore)
         
     }
     
@@ -122,6 +135,8 @@ class ViewController: UIViewController {
         slider.value = 50
         scoreLabel.text = String(scoreCounter)
         round.text = "1"
+        
+        playerNameLabel.text = player
         
     }
 
